@@ -1,17 +1,18 @@
-# Counter 사용
+# Dictionary 사용
+
 from sys import stdin
-from collections import Counter
 
-N = stdin.readline()
-card = list(map(int, stdin.readline().split(' ')))
-M = stdin.readline()
-candidate = list(map(int, stdin.readline().split(' ')))
+_ = stdin.readline() # 입력 값을 무시 -> 여기서 필요하지 않음
+card = list(map(int, stdin.readline().split()))
+_ = stdin.readline()
+candidate = list(map(int, stdin.readline().split()))
 
-# Counter는 빈도수를 딕셔너리 형태로 만듦
-feqCard = Counter(card)
+cardDic = dict()
 
-for can in candidate:
-    if can in feqCard:
-        print(feqCard[can], end=' ')
+for c in card:
+    if c in cardDic:
+        cardDic[c] += 1
     else:
-        print(0, end=' ')
+        cardDic[c] = 1
+
+print(' '.join(str(cardDic[m]) if m in cardDic else '0' for m in candidate))
