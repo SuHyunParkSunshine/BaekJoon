@@ -1,28 +1,33 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Collections;
-import java.util.Scanner;
 import java.util.PriorityQueue;
 
-// Scanner version
+// BufferedReader version
 public class Main {
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         PriorityQueue<Integer> que = new PriorityQueue<>(Collections.reverseOrder());
 
+        int N = Integer.parseInt(br.readLine());
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < N; i++) {
-            int num = sc.nextInt();
+        int i = 0;
+        while (i < N) {
+            int num = Integer.parseInt(br.readLine());
             if (num == 0) {
-                if (!que.isEmpty()) {
-                    sb.append(que.poll()).append("\n");
-                } else {
+                if (que.isEmpty()) {
                     sb.append(0).append("\n");
+                } else {
+                    sb.append(que.poll()).append("\n");
                 }
             } else {
                 que.add(num);
             }
+            i++;
         }
         System.out.println(sb.toString());
     }
